@@ -2,19 +2,21 @@
   class="container-lg h-100 d-flex justify-content-center align-items-center flex-column"
 >
   <h1>Sign Up</h1>
-  <form class="form">
+  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="userCredentialsForm">
     <div class="input-group mb-2">
       <input
         type="text"
         class="form-control"
         placeholder="First Name"
         aria-label="First Name"
+        formControlName="firstName"
       />
       <input
         type="text"
         class="form-control"
         placeholder="Last Name"
         aria-label="Last Name"
+        formControlName="lastName"
       />
     </div>
     <div class="input-group mb-2">
@@ -23,9 +25,13 @@
         class="form-control"
         placeholder="Email"
         aria-label="email"
+        formControlName="email"
       />
     </div>
-    <app-password-input></app-password-input>
-    <button class="btn btn-primary">Create Account</button>
+    <app-password-input
+      inputName="password"
+      [form]="userCredentialsForm"
+    ></app-password-input>
+    <button type="submit" class="btn btn-primary">Create Account</button>
   </form>
 </div>
