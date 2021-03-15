@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,9 +7,14 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./password-input.component.scss'],
 })
 export class PasswordInputComponent implements OnInit {
+  @Input() form = '';
+  @Input() inputName = '';
+
   passwordIconShow = faEye;
   passwordIconHide = faEyeSlash;
   showPassword: boolean = false;
+  lastName = 'lastName';
+
   constructor() {}
 
   ngOnInit(): void {}
