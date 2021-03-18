@@ -37,26 +37,26 @@ class Auth(APIView):
 
     def post(self, request):
         User = get_user_model()
-        email = request.data.get("email")
-        password = request.data.get("password")
+        email = request.data.get('email')
+        password = request.data.get('password')
         response = Response()
         if (email is None) or (password is None):
             raise exceptions.AuthenticationFailed(
-                "username/email and password are required")
+                'username/email and password are required')
 
         try:
             user = User.objects.get(
                 Q(email=email)
             )
         except:
-            raise exceptions.AuthenticationFailed("user not found")
+            raise exceptions.AuthenticationFailed('user not found')
         if (not user.check_password(password)):
-            raise exceptions.AuthenticationFailed("wrong password")
+            raise exceptions.AuthenticationFailed('wrong password')
 
         serialized_user = UserSerializer(user).data
 
         # TODO: Create access & refresh token
         response.data = {
-            "user": serialized_user,
+            'user': serialized_user,
         }
         return response
